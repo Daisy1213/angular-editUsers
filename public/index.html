@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>editUsers</title>
-    <script type="text/javascript" src="../bower_components/angular/angular.js"></script>
 </head>
 <body ng-app="myApp" ng-controller="useCtrl">
+    <script type="text/javascript" src="../bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="../src/app.js"></script>
     <h3>Users</h3>
     <table>
         <tr>
@@ -15,12 +16,26 @@
         </tr>
         <tr ng-repeat="user in users">
             <td>
-                <button>Edit</button>
+                <button ng-click="editUser(user.id)">Edit</button>
             </td>
             <td>{{user.firstName}}</td>
             <td>{{user.lastName}}</td>
         </tr>
     </table>
-
+    <button ng-click="editUser('newUser')">Create New User</button>
+    <form ng-show="isShow">
+        <!--没有点击创建新用户的button时，输入框禁用 -->
+        <h3 ng-show="edit">Create New User</h3>
+        <h3 ng-hide="edit">Edit User</h3>
+        <label>First Name</label>
+        <input type="text" ng-model="firstName" ng-disabled="!edit"/><br/>
+        <label>Last Name</label>
+        <input type="text" ng-model="lastName" ng-disabled="!edit"/><br/>
+        <label>Password</label>
+        <input type="password" ng-model="password1"/><br/>
+        <label>Repeat</label>
+        <input type="password" ng-model="password2"/><br/>
+        <button ng-disabled="isDisable">Save Changes</button>
+    </form>
 </body>
 </html>
