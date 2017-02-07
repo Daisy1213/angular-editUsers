@@ -36,7 +36,7 @@ app.controller('useCtrl', function($scope){
 
         }
 
-    }
+    };
 
     $scope.$watch('password1', function () {
         $scope.test();
